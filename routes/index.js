@@ -32,8 +32,14 @@ router.get('/:id', (req, res) => {
 
         console.log(result); // should see objects wrapped in an array
 
+        result[0].social = result[0].social.split(",").map(function(item) {
+            item = item.trim();
+
+            return item;
+        });
+
         // render the home view with dynamic data
-        res.render('home', { people: result });
+        res.json(result);
     })
 })
 
